@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "805496170685",
+    "firebase_url": "https://uniblogg-bf251-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "uniblogg-bf251",
+    "storage_bucket": "uniblogg-bf251.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805496170685:android:5c9ce7148a26642796efd4",
+        "android_client_info": {
+          "package_name": "com.company.UNIBLOG"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoQQdRSwmHREM-Lcd_QX2JB0hYP0YnTO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
