@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:untitled1/scenes/home_Page.dart';
 import 'home_screen.dart'; // Ana ekranı içe aktardık
+import 'package:untitled1/scenes/bolumler.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -35,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // Kullanıcıyı ana ekrana yönlendir
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => MyApp()),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
