@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData.dark(), // Tema siyah yapılıyor
-      home: const LoginPage(), // LoginPage sayfasını ana ekran olarak belirliyoruz
+      theme: ThemeData.dark(),
+      home: const LoginPage(),
     );
   }
 }
@@ -26,75 +26,96 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
-  final _cityController = TextEditingController();
+  final _passwordController = TextEditingController();
 
-  // Formu gönderme işlemi
   void _submit() {
     String email = _emailController.text;
-    String city = _cityController.text;
-
-    // Burada girdiği bilgileri alabilirsiniz
+    String password = _passwordController.text;
     print('E-posta: $email');
-    print('Şehir: $city');
-
-    // Bu bilgileri kullanarak istediğiniz işlemi gerçekleştirebilirsiniz
+    print('Şifre: $password');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Arka planı siyah yapıyoruz
-      appBar: AppBar(
-        backgroundColor: Colors.black, // AppBar rengi siyah
-        title: const Text('Kullanıcı Girişi', style: TextStyle(color: Colors.white)),
-      ),
+      backgroundColor: Colors.black,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // E-posta alanı
-              TextField(
-                controller: _emailController,
-                style: const TextStyle(color: Colors.white), // Yazı rengi beyaz
-                decoration: InputDecoration(
-                  labelText: 'E-posta Adresi',
-                  labelStyle: const TextStyle(color: Colors.white),
-                  hintText: 'E-posta adresinizi girin',
-                  hintStyle: const TextStyle(color: Colors.white54),
-                  filled: true,
-                  fillColor: Colors.grey[800], // Alanın arka plan rengi
-                  border: const OutlineInputBorder(),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // **Ortalanmış Giriş İkonu**
+                const Icon(
+                  Icons.login,
+                  size: 100.0,
+                  color: Colors.white,
                 ),
-              ),
-              const SizedBox(height: 20),
-              // Şehir alanı
-              TextField(
-                controller: _cityController,
-                style: const TextStyle(color: Colors.white), // Yazı rengi beyaz
-                decoration: InputDecoration(
-                  labelText: 'Şehir',
-                  labelStyle: const TextStyle(color: Colors.white),
-                  hintText: 'Okuduğunuz şehri girin',
-                  hintStyle: const TextStyle(color: Colors.white54),
-                  filled: true,
-                  fillColor: Colors.grey[800], // Alanın arka plan rengi
-                  border: const OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 20),
-              // Giriş butonu
-              ElevatedButton(
-                onPressed: _submit,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, // Butonun rengi
-                ),
-                child: const Text('Giriş Yap', style: TextStyle(color: Colors.white)),
-              ),
+                const SizedBox(height: 20),
 
-            ],
+                // **Kullanıcı Girişi Başlığı**
+                const Text(
+                  'Kullanıcı Girişi',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                const SizedBox(height: 30),
+
+                // **E-Posta Alanı**
+                TextField(
+                  controller: _emailController,
+                  style: const TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: 'E-posta Adresi',
+                    labelStyle: const TextStyle(color: Colors.white),
+                    hintText: 'E-posta adresinizi girin',
+                    hintStyle: const TextStyle(color: Colors.white54),
+                    filled: true,
+                    fillColor: Colors.grey[800],
+                    border: const OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // **Şifre Alanı**
+                TextField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  style: const TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: 'Şifre',
+                    labelStyle: const TextStyle(color: Colors.white),
+                    hintText: 'Şifrenizi girin',
+                    hintStyle: const TextStyle(color: Colors.white54),
+                    filled: true,
+                    fillColor: Colors.grey[800],
+                    border: const OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // **Giriş Yap Butonu**
+                ElevatedButton(
+                  onPressed: _submit,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                  ),
+                  child: const Text('Giriş Yap', style: TextStyle(color: Colors.white)),
+                ),
+                const SizedBox(height: 20),
+
+                // **Kayıt Ol Butonu**
+                ElevatedButton(
+                  onPressed: () {
+                    print("Kayıt Ol butonuna tıklandı");
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                  ),
+                  child: const Text('Kayıt Ol', style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
           ),
         ),
       ),
