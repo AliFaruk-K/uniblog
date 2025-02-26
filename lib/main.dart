@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/scenes/giris.dart';
 import 'screens/login_screen.dart';
-import 'package:untitled1/scenes/home_Page.dart';
 import 'package:untitled1/scenes/bolumler.dart';
 
 void main() {

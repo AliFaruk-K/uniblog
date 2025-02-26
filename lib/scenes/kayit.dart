@@ -5,7 +5,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp();
 
   @override
   Widget build(BuildContext context) {
@@ -65,27 +65,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
               ),
               const SizedBox(height: 16),
-
-              // Soyisim Alanı
-              TextFormField(
-                controller: _surnameController,
-                style: const TextStyle(color: Colors.white, fontSize: 18), // Font boyutunu artırdık
-                decoration: const InputDecoration(
-                  labelText: 'Soyisim',
-                  labelStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(),
-                  filled: true,
-                  fillColor: Colors.grey,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Lütfen soyadınızı girin';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-
               // E-posta Alanı
               TextFormField(
                 controller: _emailController,
@@ -108,26 +87,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
               ),
               const SizedBox(height: 16),
-
-              // Üniversite Adı Alanı
-              TextFormField(
-                controller: _universityController,
-                style: const TextStyle(color: Colors.white, fontSize: 18), // Font boyutunu artırdık
-                decoration: const InputDecoration(
-                  labelText: 'Üniversite Adı',
-                  labelStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(),
-                  filled: true,
-                  fillColor: Colors.grey,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Lütfen üniversite adını girin';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 32),
 
               // Kayıt Ol Butonu
               Center(
