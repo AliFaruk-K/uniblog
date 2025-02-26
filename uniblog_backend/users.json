@@ -1,8 +1,8 @@
 [
   {
-    "username": "ali",
-    "email": "232201072@ogrenci.amasya.edu.tr",
-    "password": "789632145"
+    "username": "Ali Faruk Kahraman",
+    "email": "muslera",
+    "password": "64"
   },
   {
     "username": "ali",
@@ -38,5 +38,15 @@
     "username": "husamettin",
     "email": "123456789@ogrenci.amasya.edu.tr",
     "password": "123456"
+  },
+  {
+    "username": "Enes Birer",
+    "email": "messi",
+    "password": "51"
+  },
+  {
+    "username": "Talha Şahin",
+    "email": "Fatih",
+    "password": "06"
   }
 ]
