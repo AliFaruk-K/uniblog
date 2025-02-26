@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:untitled1/main.dart';
+import 'package:untitled1/screens/home_screen.dart';  // HomePage import
+import 'package:untitled1/screens/register_screen.dart';
 import 'package:untitled1/scenes/bolumler.dart';
-import 'package:untitled1/screens/home_screen.dart';
-import 'package:untitled1/screens/register_screen.dart'; // Kayıt ol sayfası
-import 'package:untitled1/screens/login_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -32,15 +31,17 @@ class _LoginScreenState extends State<LoginScreen> {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       await storage.write(key: "token", value: data['token']);
-
+      
+      String username = data['username']; // Backend'den gelen kullanıcı adı
+      
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Giriş başarılı! Ana ekrana yönlendiriliyorsunuz...")),
       );
 
-      // Kullanıcıyı ana sayfaya yönlendir
+      // Kullanıcıyı ana sayfaya yönlendir ve kullanıcı adını parametre olarak gönder
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => HomePage(username: username)),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -52,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Arka plan siyah
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text('Kullanıcı Girişi', style: TextStyle(color: Colors.white)),
@@ -64,7 +65,6 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // E-posta alanı
               TextField(
                 controller: emailController,
                 style: const TextStyle(color: Colors.white),
@@ -79,10 +79,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              // Şifre alanı
               TextField(
                 controller: passwordController,
-                obscureText: true, // Şifre gizleme
+                obscureText: true,
                 style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: 'Şifre',
@@ -95,16 +94,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              // Giriş Butonu
               ElevatedButton(
                 onPressed: login,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, // Buton rengi
+                  backgroundColor: Colors.blue,
                 ),
                 child: const Text('Giriş Yap', style: TextStyle(color: Colors.white)),
               ),
               const SizedBox(height: 10),
-              // Kayıt Ol Butonu
               TextButton(
                 onPressed: () {
                   Navigator.push(

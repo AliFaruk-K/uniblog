@@ -9,6 +9,28 @@ app.use(express.json());
 app.use(cors());
 
 const usersFile = "users.json";
+const tweetsFile = "tweets.json";
+
+// Tweet ekleme API
+app.post("/api/tweets", (req, res) => {
+  const { username, tweet } = req.body;
+
+  if (!username || !tweet) {
+    return res.status(400).json({ message: "Eksik veri!" });
+  }
+
+  let tweets = [];
+  if (fs.existsSync(tweetsFile)) {
+    const fileData = fs.readFileSync(tweetsFile, "utf-8");
+    tweets = JSON.parse(fileData);
+  }
+
+  tweets.push({ username, tweet });
+  fs.writeFileSync(tweetsFile, JSON.stringify(tweets, null, 2));
+
+  res.status(201).json({ message: "Tweet başarıyla eklendi!" });
+});
+
 
 // 📌 Kullanıcı adı, e-posta ve şifre doğrulama fonksiyonu
 function validateUsername(username) {
