@@ -46,59 +46,74 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: usernameController,
-              style: const TextStyle(color: Colors.white, fontSize: 18),
-              decoration: const InputDecoration(
-                labelText: "Kullanıcı Adı",
-                labelStyle: TextStyle(color: Colors.white),
-                border: OutlineInputBorder(),
-                filled: true,
-                fillColor: Colors.grey,
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: emailController,
-              style: const TextStyle(color: Colors.white, fontSize: 18),
-              decoration: const InputDecoration(
-                labelText: "E-mail",
-                labelStyle: TextStyle(color: Colors.white),
-                border: OutlineInputBorder(),
-                filled: true,
-                fillColor: Colors.grey,
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: passwordController,
-              obscureText: true,
-              style: const TextStyle(color: Colors.white, fontSize: 18),
-              decoration: const InputDecoration(
-                labelText: "Şifre",
-                labelStyle: TextStyle(color: Colors.white),
-                border: OutlineInputBorder(),
-                filled: true,
-                fillColor: Colors.grey,
-              ),
-            ),
-            const SizedBox(height: 32),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  print("Kayıt butonuna basıldı!");
-                  register();
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextField(
+                  controller: usernameController,
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                  decoration: InputDecoration(
+                    labelText: "Ad Soyad",
+                    labelStyle: const TextStyle(color: Colors.white),
+                    filled: true,
+                    fillColor: Colors.grey[800],
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
                 ),
-                child: const Text("Kayıt Ol", style: TextStyle(fontSize: 18)),
-              ),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: emailController,
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                  decoration: InputDecoration(
+                    labelText: "Okul E-mail",
+                    labelStyle: const TextStyle(color: Colors.white),
+                    filled: true,
+                    fillColor: Colors.grey[800],
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: passwordController,
+                  obscureText: true,
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                  decoration: InputDecoration(
+                    labelText: "Şifre",
+                    labelStyle: const TextStyle(color: Colors.white),
+                    filled: true,
+                    fillColor: Colors.grey[800],
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 32),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: register,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green, // Buton rengi yeşil
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                    ),
+                    child: const Text(
+                      "Kayıt Ol",
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
