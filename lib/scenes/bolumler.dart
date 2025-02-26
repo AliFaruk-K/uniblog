@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/scenes/kayit.dart';
 import 'package:untitled1/scenes/giris.dart';
+import 'package:untitled1/screens/login_screen.dart';
+import 'package:untitled1/screens/register_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -54,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const LoginPage(),),
+                      MaterialPageRoute(builder: (context) => LoginScreen(),),
                     );
                   },
                   icon: const Icon(Icons.login, color: Colors.white, size: 40), // Giriş butonuna ikon eklendi ve büyütüldü
@@ -69,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const RegisterPage(),),
+                      MaterialPageRoute(builder: (context) => RegisterScreen(),),
                     );
                   },
 
