@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData.dark(), // Siyah tema
+      theme: ThemeData.dark(),
       home: const RegisterPage(),
     );
   }
@@ -34,9 +34,9 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Arka plan siyah
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black, // AppBar rengi
+        backgroundColor: Colors.black,
         title: const Text('Kayıt Ol', style: TextStyle(color: Colors.white)),
       ),
       body: Padding(
@@ -44,105 +44,33 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Form(
           key: _formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               // İsim Alanı
-              TextFormField(
-                controller: _nameController,
-                style: const TextStyle(color: Colors.white, fontSize: 18), // Font boyutunu artırdık
-                decoration: const InputDecoration(
-                  labelText: 'İsim',
-                  labelStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(),
-                  filled: true,
-                  fillColor: Colors.grey,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Lütfen isminizi girin';
-                  }
-                  return null;
-                },
-              ),
+              _buildTextField(_nameController, 'İsim'),
               const SizedBox(height: 16),
-
               // Soyisim Alanı
-              TextFormField(
-                controller: _surnameController,
-                style: const TextStyle(color: Colors.white, fontSize: 18), // Font boyutunu artırdık
-                decoration: const InputDecoration(
-                  labelText: 'Soyisim',
-                  labelStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(),
-                  filled: true,
-                  fillColor: Colors.grey,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Lütfen soyadınızı girin';
-                  }
-                  return null;
-                },
-              ),
+              _buildTextField(_surnameController, 'Soyisim'),
               const SizedBox(height: 16),
-
               // E-posta Alanı
-              TextFormField(
-                controller: _emailController,
-                style: const TextStyle(color: Colors.white, fontSize: 18), // Font boyutunu artırdık
-                decoration: const InputDecoration(
-                  labelText: 'E-posta Adresi',
-                  labelStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(),
-                  filled: true,
-                  fillColor: Colors.grey,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Lütfen e-posta adresinizi girin';
-                  }
-                  if (!RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
-                    return 'Geçerli bir e-posta adresi girin';
-                  }
-                  return null;
-                },
-              ),
+              _buildTextField(_emailController, 'E-posta Adresi', emailValidation: true),
               const SizedBox(height: 16),
-
               // Üniversite Adı Alanı
-              TextFormField(
-                controller: _universityController,
-                style: const TextStyle(color: Colors.white, fontSize: 18), // Font boyutunu artırdık
-                decoration: const InputDecoration(
-                  labelText: 'Üniversite Adı',
-                  labelStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(),
-                  filled: true,
-                  fillColor: Colors.grey,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Lütfen üniversite adını girin';
-                  }
-                  return null;
-                },
-              ),
+              _buildTextField(_universityController, 'Üniversite Adı'),
               const SizedBox(height: 32),
-
               // Kayıt Ol Butonu
               Center(
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {
-                      // Form geçerli ise
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Kayıt başarılı!')),
                       );
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue, // Buton rengi
-                    padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0), // Butonun boyutunu büyüt
+                    backgroundColor: Colors.blue,
+                    padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0),
                   ),
                   child: const Text('Kayıt Ol', style: TextStyle(fontSize: 18)),
                 ),
@@ -151,6 +79,30 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTextField(TextEditingController controller, String label, {bool emailValidation = false}) {
+    return TextFormField(
+      controller: controller,
+      style: const TextStyle(color: Colors.white, fontSize: 18),
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: const TextStyle(color: Colors.white, fontSize: 20),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        filled: true,
+        fillColor: Colors.grey[800], // Daha açık siyah arkaplan
+      ),
+      textAlign: TextAlign.center, // Metni ortala
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Lütfen $label girin';
+        }
+        if (emailValidation && !RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
+          return 'Geçerli bir e-posta adresi girin';
+        }
+        return null;
+      },
     );
   }
 }

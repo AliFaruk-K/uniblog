@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled1/scenes/home_Page.dart';
 import 'package:untitled1/scenes/bolumler.dart';
 
 void main() {
